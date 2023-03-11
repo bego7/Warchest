@@ -11,29 +11,19 @@ public class Game {
 
     public void startGame(){
         
-        // System.out.println("The board size by default is 9 x 9, do you want to make it 5 x 5? Answer: 5 or 9");
-        // int size = sc.nextInt();
-        
+            System.out.println();
             System.out.println("Board size is 5x5");
             Player playerToStart = getStartingPlayer();
             board.initializeBoard(5);
             board.printBoard(5,playerToStart);
-            while(isGameOver()){
+            while(!isGameOver()){
                 playerToStart.play();
+                
+
             }
             
         
-        // else{
-        //     System.out.println("Board size is the default one");
-        //     Player playerToStart = getStartingPlayer();
-        //     board.initializeBoard(size);
-        //     board.printBoard(size,playerToStart);
-            
-        //     while(isGameOver()){
-        //         playerToStart.play();
-        //     }
-
-        // }
+       
 
     }
 

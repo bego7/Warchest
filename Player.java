@@ -1,6 +1,8 @@
 import java.util.*;  
 public class Player{
 
+    Scanner sc = new Scanner(System.in);
+
     private String name; 
     private String token;
     private Bag bag;
@@ -35,8 +37,54 @@ public class Player{
 
     }
     public void play(){
+      /*while(numActions > 0){
+        takeAction();
+      }*/
+      
+      takeAction();
+    }
+
+    public void takeAction(){
       System.out.println("Make an action (move/recruit/place/attack/control/initiative/forfeit): ");
-      //bag.printBag();
+      String action = sc.nextLine();
+      switch(action){
+        case "move":
+        System.out.println("From position (row, col): ");
+        
+        break;
+
+        case "recruit":
+          System.out.println("Recruit action selected");
+        break;
+
+        case "place":
+          System.out.println("Place action selected");
+
+        break;
+
+        case "attack":
+          System.out.println("Attack action selected");
+
+        break;
+
+        case "control":
+          System.out.println("Control action selected");
+
+        break;
+
+        case "initiative":
+          System.out.println("Initiative action selected");
+
+        break;
+
+        case "forfeit":
+          System.out.println("Forfeit action selected");
+
+        break;
+
+        default:
+          System.out.println("Wrong action selected");
+      }
     }
 
     public int getControlledZones(){
