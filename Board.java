@@ -37,13 +37,14 @@ public class Board {
         //W represents wolf's zone already controlled
         grid[4][2] = "W  ";
 
-        //@ represent free zones to be conquered
+        //@ represents free zones to be conquered
         grid[2][1] = "@  ";
         grid[2][3] = "@  ";
         grid[3][2] = "@  ";
      }
 
      public void printBoard(int size,Player player ){
+        
         String letters = "bcdefghij";
 
         System.out.print("a|"+ " ");

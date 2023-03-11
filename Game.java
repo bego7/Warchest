@@ -18,12 +18,19 @@ public class Game {
             board.initializeBoard(5);
             board.printBoard(5,currentPlayer);
             while(!isGameOver()){
-                currentPlayer.play();
+                currentPlayer.play(false);
                 //only changes the current player playing if he/she
                 //didn't use the initiative action
-                if(!currentPlayer.getPlayedInitiative()){
+                if(!currentPlayer.getPlayedInitiative() && currentPlayer.play(true)){
                     switchTurn();
-                    board.printBoard(5,currentPlayer);
+                    startNewRound();
+                    
+                }
+                //player finished playing but played the take the initiative action during
+                //his/ her turn
+                else{
+                    System.out.println("User finished playing and played the take initiative card");
+                    startNewRound();
                 }
                 
 
@@ -32,6 +39,14 @@ public class Game {
         
        
 
+    }
+
+    public void startNewRound(){
+        board.printBoard(5,currentPlayer);
+        currentPlayer.setPlayedInitiative(false);
+        currentPlayer.setNumActions(0);
+        currentPlayer.play(false);
+        System.out.flush();  
     }
 
     public void switchTurn(){

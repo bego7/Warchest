@@ -2,11 +2,13 @@ import java.util.*;
 public class Player{
 
     Scanner sc = new Scanner(System.in);
+    
 
     private String name; 
     private String token;
     private Bag bag;
     private Boolean playInitiative = false;
+    private int numActions = 0;
     private int controlledZones = 1;
 
 
@@ -33,59 +35,81 @@ public class Player{
     public Boolean getPlayedInitiative(){
       return playInitiative;
     }
+
+    public int getNumAction(){
+      return this.numActions;
+    }
   
     // Setters
     public void setName(String name) {
       this.name = name;
     }
 
+    public void setPlayedInitiative(boolean value){
+      this.playInitiative = value;
+    }
+
+    public void setNumActions(int value){
+      this.numActions = value;
+    }
+
     public void preparePlayerSettings(){
 
     }
-    public void play(){
-      /*while(numActions > 0){
+    public boolean play(boolean finishRound){
+      while(this.numActions < 3){
         takeAction();
-      }*/
-      
-      takeAction();
+      }
+      finishRound = true;
+      return finishRound;
     }
 
     public void takeAction(){
+      
       System.out.println("Make an action (move/recruit/place/attack/control/initiative/forfeit): ");
       String action = sc.nextLine();
       switch(action){
         case "move":
         System.out.println("From position (row, col): ");
-        
+        this.numActions++;
         break;
 
         case "recruit":
           System.out.println("Recruit action selected");
+          this.numActions++;
+
         break;
 
         case "place":
           System.out.println("Place action selected");
+          this.numActions++;
+
 
         break;
 
         case "attack":
           System.out.println("Attack action selected");
+          this.numActions++;
 
         break;
 
         case "control":
           System.out.println("Control action selected");
+          this.numActions++;
 
         break;
 
         case "initiative":
           playInitiative = true;
           System.out.println("Initiative action selected");
+          this.numActions++;
 
         break;
 
         case "forfeit":
           System.out.println("Forfeit action selected");
+          this.numActions++;
+
 
         break;
 
