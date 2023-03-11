@@ -29,23 +29,22 @@ public class Game {
                 //player finished playing but played the take the initiative action during
                 //his/ her turn
                 else{
-                    System.out.println("User finished playing and played the take initiative card");
                     startNewRound();
                 }
                 
-
             }
-            
-        
-       
-
     }
 
     public void startNewRound(){
+        cleanScreen(); 
         board.printBoard(5,currentPlayer);
         currentPlayer.setPlayedInitiative(false);
         currentPlayer.setNumActions(0);
         currentPlayer.play(false);
+    }
+
+    public void cleanScreen(){
+        System.out.print("\033[H\033[2J");  
         System.out.flush();  
     }
 
