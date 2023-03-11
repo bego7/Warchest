@@ -24,6 +24,23 @@ public class Board {
                 grid[i][j] =".  ";
             }
         }
+
+        setControlledAreas();
+     }
+
+     //sets the controlled and available zones in the board
+     public void setControlledAreas(){
+
+        //C represents crow's zone already controlled
+        grid[0][2] = "C  ";
+
+        //W represents wolf's zone already controlled
+        grid[4][2] = "W  ";
+
+        //@ represent free zones to be conquered
+        grid[2][1] = "@  ";
+        grid[2][3] = "@  ";
+        grid[3][2] = "@  ";
      }
 
      public void printBoard(int size,Player player ){
@@ -49,6 +66,8 @@ public class Board {
         System.out.println();
         System.out.println();
      }
+
+     
         
 
     
