@@ -9,11 +9,12 @@ public class Board {
     }
 
     public void initializeBoard(int size){
+        System.out.print("   ");
         for(int i=0;i<size;i++){
             System.out.print(i+ " ");
         }
         System.out.println();
-        for(int i=0;i<size*2;i++){
+        for(int i=0;i<size*3;i++){
             System.out.print('-');
         }
         System.out.println();
@@ -24,15 +25,25 @@ public class Board {
         }
      }
 
-     public void printBoard(int size,String playerName ){
+     public void printBoard(int size,Player player ){
+        String letters = "bcdefghij";
+
+        System.out.print("a|"+ " ");
         for(int i=0;i<size;i++){
             for(int j=0;j<size;j++){
                 System.out.print(grid[i][j]);
             }
             System.out.println();
+
+            //fixes problem with last letter which was getting printed
+            if(i<size-1){
+                System.out.print(letters.charAt(i));
+                System.out.print('|'+ " ");
+            }
+            
         }
         System.out.println();
-        System.out.print("#### "+playerName+" ####");
+        System.out.print("#### "+player.getName()+ " " +player.getToken()+" ####");
         System.out.println();
      }
         
