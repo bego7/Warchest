@@ -3,7 +3,7 @@ public class Game {
     Scanner sc = new Scanner(System.in);
     Random r = new Random();
 
-    //private Board board = new Board(9);
+    
     private Board board = new Board(5);
     private Player playerWolf = new Player("Wolf", "v");
     private Player playerCrow = new Player("Crow", "^");

@@ -9,15 +9,6 @@ public class Board {
     }
 
     public void initializeBoard(int size){
-        System.out.print("   ");
-        for(int i=0;i<size;i++){
-            System.out.print(i+ "  ");
-        }
-        System.out.println();
-        System.out.print("   ");
-        for(int i=0;i<size*3;i++){
-            System.out.print('-');
-        }
         System.out.println();
         for(int i=0;i<size;i++){
             for(int j=0;j<size;j++){
@@ -44,6 +35,17 @@ public class Board {
      }
 
      public void printBoard(int size,Player player ){
+
+        System.out.print("   ");
+        for(int i=0;i<size;i++){
+            System.out.print(i+ "  ");
+        }
+        System.out.println();
+        System.out.print("   ");
+        for(int i=0;i<size*3;i++){
+            System.out.print('-');
+        }
+        System.out.println();
         
         String letters = "bcdefghij";
 
