@@ -10,6 +10,8 @@ public class Player{
     private Boolean playInitiative = false;
     private int numActions = 0;
     private int controlledZones = 1;
+    private boolean forfeit = false;
+    private String lastActionPlayed = "";
 
 
     Player(String name, String token){
@@ -39,6 +41,13 @@ public class Player{
     public int getNumAction(){
       return this.numActions;
     }
+
+    public boolean getForfeit(){
+      return this.forfeit;
+    }
+    public String getLastActionPlayed(){
+      return lastActionPlayed;
+    }
   
     // Setters
     public void setName(String name) {
@@ -53,11 +62,15 @@ public class Player{
       this.numActions = value;
     }
 
+    public void setForfeit(boolean value){
+      this.forfeit = true;
+    }
+
     public void preparePlayerSettings(){
 
     }
     public boolean play(boolean finishRound){
-      while(this.numActions < 3){
+      while(this.numActions < 3 && !getForfeit()){
         takeAction();
       }
       finishRound = true;
@@ -71,6 +84,7 @@ public class Player{
       switch(action){
         case "move":
         System.out.println("From position (row, col): ");
+
         this.numActions++;
         break;
 
@@ -107,10 +121,10 @@ public class Player{
         break;
 
         case "forfeit":
-          System.out.println("Forfeit action selected");
-          this.numActions++;
-
-
+          System.out.println("GAME OVER!");
+          setForfeit(true);
+          this.lastActionPlayed = "forfeit";
+          this.numActions = 3;
         break;
 
         default:

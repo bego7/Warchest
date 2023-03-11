@@ -22,8 +22,20 @@ public class Game {
                 //only changes the current player playing if he/she
                 //didn't use the initiative action
                 if(!currentPlayer.getPlayedInitiative() && currentPlayer.play(true)){
-                    switchTurn();
-                    startNewRound();
+                    if(currentPlayer.getLastActionPlayed().equals("forfeit")){
+                        if(currentPlayer.getName().equals("Wolf")){
+                            System.out.println("The winner is Crow");
+                        }
+                        else{
+                            System.out.println("The winner is Wolf!");
+                        }
+                        break;
+                    }
+                    else{
+                        switchTurn();
+                        startNewRound();
+                    }
+                    
                     
                 }
                 //player finished playing but played the take the initiative action during
@@ -71,8 +83,27 @@ public class Game {
 
 
     public boolean isGameOver(){
-        if(playerCrow.getControlledZones() == 4 |  playerWolf.getControlledZones() == 4){
+
+        if(playerCrow.getControlledZones() == 4 |  playerWolf.getControlledZones() == 4 | currentPlayer.getForfeit() == true){
             gameOver = true;
+            if(currentPlayer.getForfeit() == true){
+                if(currentPlayer.getName().equals("Wolf")){
+                    System.out.println("The winner is Crow");
+                }
+                else{
+                    System.out.println("The winner is Wolf!");
+                }
+            }
+            else{
+                if(playerCrow.getControlledZones() == 4){
+                    System.out.println("The winner is crow");
+                }
+                else{
+                    System.out.println("The winner is wolf!");
+                }
+            }
+            
+            
         }
         return gameOver;
     }
