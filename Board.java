@@ -1,37 +1,43 @@
 import java.util.*;  
 public class Board {
-    Scanner sc = new Scanner(System.in);
-    private int size = 9;
-    private String grid [][] = new String [size][size];
+    private int size;
+    private String grid [][];
 
     Board(int size) {
         this.size = size;
+        this.grid = new String[size][size];
     }
 
-    public void initializeBoard(){
-        System.out.println("The board size by default is 9 x 9, do you want to make it smaller? yes or no");
-        String ans = sc.nextLine();
-
-        if(ans == "yes"){
-            System.out.println("Board size is now 5x5");
-            for(int i=0;i<5;i++){
-                for(int j=0;j<5;j++){
-                    System.out.print('-'+" ");
-                }
-                System.out.println();
+    public void initializeBoard(int size){
+        for(int i=0;i<size;i++){
+            System.out.print(i+ " ");
+        }
+        System.out.println();
+        for(int i=0;i<size*2;i++){
+            System.out.print('-');
+        }
+        System.out.println();
+        for(int i=0;i<size;i++){
+            for(int j=0;j<size;j++){
+                grid[i][j] =". ";
             }
         }
-        else {
-            System.out.println("Board size is the default one");
-            for(int i=0;i<9;i++){
-                for(int j=0;j<9;j++){
-                    System.out.print('-'+" ");
-                }
-                System.out.println();
-            }
-        }
+     }
 
-    }
+     public void printBoard(int size,String playerName ){
+        for(int i=0;i<size;i++){
+            for(int j=0;j<size;j++){
+                System.out.print(grid[i][j]);
+            }
+            System.out.println();
+        }
+        System.out.println();
+        System.out.print("#### "+playerName+" ####");
+        System.out.println();
+     }
+        
+
+    
 
     // public void setToken(){
 

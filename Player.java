@@ -1,6 +1,7 @@
 import java.util.*;  
 public class Player{
     private String name; 
+    private String token;
 
     Player(String name){
       this.name = name;
