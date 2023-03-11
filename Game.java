@@ -4,26 +4,36 @@ public class Game {
     Random r = new Random();
 
     //private Board board = new Board(9);
-    private Board board = new Board(9);
+    private Board board = new Board(5);
     private Player playerWolf = new Player("Wolf", "v");
     private Player playerCrow = new Player("Crow", "^");
+    private boolean gameOver = false;
 
     public void startGame(){
         
-        System.out.println("The board size by default is 9 x 9, do you want to make it 5 x 5? Answer: 5 or 9");
-        int size = sc.nextInt();
-        if(size == 5){
-            System.out.println("Board size is now 5x5");
+        // System.out.println("The board size by default is 9 x 9, do you want to make it 5 x 5? Answer: 5 or 9");
+        // int size = sc.nextInt();
+        
+            System.out.println("Board size is 5x5");
             Player playerToStart = getStartingPlayer();
-            board.initializeBoard(size);
-            board.printBoard(size,playerToStart);
-        }
-        else{
-            System.out.println("Board size is the default one");
-            Player playerToStart = getStartingPlayer();
-            board.initializeBoard(size);
-            board.printBoard(size,playerToStart);
-        }
+            board.initializeBoard(5);
+            board.printBoard(5,playerToStart);
+            while(isGameOver()){
+                playerToStart.play();
+            }
+            
+        
+        // else{
+        //     System.out.println("Board size is the default one");
+        //     Player playerToStart = getStartingPlayer();
+        //     board.initializeBoard(size);
+        //     board.printBoard(size,playerToStart);
+            
+        //     while(isGameOver()){
+        //         playerToStart.play();
+        //     }
+
+        // }
 
     }
 
@@ -37,6 +47,14 @@ public class Game {
         }
             return playerCrow;
         
+    }
+
+
+    public boolean isGameOver(){
+        if(playerCrow.getControlledZones() == 4 |  playerWolf.getControlledZones() == 4){
+            gameOver = true;
+        }
+        return gameOver;
     }
 
 }
