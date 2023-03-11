@@ -7,17 +7,24 @@ public class Game {
     private Board board = new Board(5);
     private Player playerWolf = new Player("Wolf", "v");
     private Player playerCrow = new Player("Crow", "^");
+    private Player currentPlayer;
     private boolean gameOver = false;
 
     public void startGame(){
         
             System.out.println();
             System.out.println("Board size is 5x5");
-            Player playerToStart = getStartingPlayer();
+            currentPlayer = getStartingPlayer();
             board.initializeBoard(5);
-            board.printBoard(5,playerToStart);
+            board.printBoard(5,currentPlayer);
             while(!isGameOver()){
-                playerToStart.play();
+                currentPlayer.play();
+                //only changes the current player playing if he/she
+                //didn't use the initiative action
+                if(!currentPlayer.getPlayedInitiative()){
+                    switchTurn();
+                    board.printBoard(5,currentPlayer);
+                }
                 
 
             }
@@ -25,6 +32,15 @@ public class Game {
         
        
 
+    }
+
+    public void switchTurn(){
+        if(currentPlayer.equals(playerWolf)){
+            currentPlayer = playerCrow;
+        }
+        else{
+            currentPlayer = playerWolf;
+        }
     }
 
     //returns a number between 1 inclusive and 3 exclusive

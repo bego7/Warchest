@@ -6,6 +6,8 @@ public class Player{
     private String name; 
     private String token;
     private Bag bag;
+    private Boolean playInitiative = false;
+    private int controlledZones = 1;
 
 
     Player(String name, String token){
@@ -26,6 +28,10 @@ public class Player{
 
     public String getToken() {
       return token;
+    }
+
+    public Boolean getPlayedInitiative(){
+      return playInitiative;
     }
   
     // Setters
@@ -73,6 +79,7 @@ public class Player{
         break;
 
         case "initiative":
+          playInitiative = true;
           System.out.println("Initiative action selected");
 
         break;
