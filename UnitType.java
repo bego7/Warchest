@@ -1,5 +1,7 @@
 import java.util.*;  
-public class UnitType{
+
+//unit type should be an abstract class as no instancesof it will be created 
+public abstract class UnitType{
     private String token;
     private String name;
 
