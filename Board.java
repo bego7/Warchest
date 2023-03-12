@@ -1,11 +1,17 @@
 import java.util.*;  
 public class Board {
+    Scanner sc = new Scanner(System.in);
     private int size;
     private String grid [][];
+    private CoinsBoard coinsBoard = new CoinsBoard();
 
     Board(int size) {
         this.size = size;
         this.grid = new String[size][size];
+    }
+
+    public CoinsBoard getCoinsInTheBoard(){
+        return this.coinsBoard;
     }
 
     public void initializeBoard(int size){
@@ -71,12 +77,15 @@ public class Board {
      }
 
     public void setToken(String coordinates, String token, String playerToken){
-        String tokenToPlace = token + playerToken ;
+        String tokenToPlace = token + playerToken + " " ;
         int arr [] = parseCoordinates(coordinates);
-        // if(arr[0]==-1){
-        //     System.out.println("Invalid coordinates added, enter new coordinates");
-        //     sc.nextLine() 
-        // }
+        //checks for invalid coordinates on the first position
+        while(arr[0] == -1){
+            System.out.println("Invalid coordinates added, enter new coordinates");
+            String newVal = sc.nextLine();
+            arr= parseCoordinates(newVal);
+        }
+
         grid[arr[0]][arr[1]] = tokenToPlace;
     }
 

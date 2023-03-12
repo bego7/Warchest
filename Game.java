@@ -58,7 +58,7 @@ public class Game {
         cleanScreen(); 
         board.printBoard(5,currentPlayer);
         
-        //before startin the next round check if someone at the end of the other round 
+        //before starting the next round check if someone at the end of the other round 
         //didnt run out of coins in their bag
         if(playerWolf.getBagSize()==0 | playerCrow.getBagSize() == 0 ){
             this.gameOver = true;
@@ -67,9 +67,11 @@ public class Game {
         }
 
         else{
-            //check number of elements in bag
+            
             if(currentPlayer.getHandSize()<3){
-                while(currentPlayer.getBagSize()>0){
+                //check number of elements in bag and that we are not taking more coins
+                //than possible per turn 
+                while(currentPlayer.getBagSize()>0 && currentPlayer.getHandSize()<3){
                     //take individual items from bag and add them to your hand
                     currentPlayer.drawOneFromBag();
                 }

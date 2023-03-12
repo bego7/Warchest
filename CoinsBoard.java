@@ -3,7 +3,7 @@ public class CoinsBoard {
     
     private ArrayList<UnitType> pieces = new ArrayList<UnitType>();
     // Getters
-    public ArrayList<UnitType> getHand(){
+    public ArrayList<UnitType> getCoinsBoard(){
         return this.pieces;
     }
 

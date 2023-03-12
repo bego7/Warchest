@@ -4,7 +4,8 @@ import java.util.*;
 public abstract class UnitType{
     private String token;
     private String name;
-   
+
+    private String coords;
 
     UnitType(String name, String token){
         this.name = name;
@@ -12,6 +13,10 @@ public abstract class UnitType{
     }
 
     //Getters
+    public String getCoords(){
+        return this.coords;
+    }
+   
     public String getToken(){
         return this.token;
     }
@@ -22,6 +27,10 @@ public abstract class UnitType{
     //Setters
     public void setName(String value){
         this.name = value;
+    }
+
+    public void setCoords(String coords){
+        this.coords = coords;
     }
 
     public void setToken(String value){

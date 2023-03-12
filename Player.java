@@ -7,7 +7,7 @@ public class Player{
     private Hand hand = new Hand();
     private RecruitingPile recruiting = new RecruitingPile();
     private DiscardPile discardPile = new DiscardPile();
-    private CoinsBoard coinsBoard = new CoinsBoard();
+    
 
     private String name; 
     private String token;
@@ -18,9 +18,6 @@ public class Player{
     private boolean forfeit = false;
     private String lastActionPlayed = "";
     private Board board;
-
-    //test to see if i can create Archer objects using the inherited methods from unitType
-    private Archer archer = new Archer("Archer", "A");
 
 
     Player(String name, String token){
@@ -276,6 +273,7 @@ public class Player{
           String newCoordinates = sc.nextLine();
 
           coin.move(coordinates,newCoordinates, board, this);
+          coin.setCoords(newCoordinates);
           //removes coin from hand
           hand.removeCoinObject(coin);
 
@@ -319,7 +317,10 @@ public class Player{
         System.out.println("Position to place (row, col): ");
         String coordinates = sc.nextLine();
         coin.place(coordinates, board, this);
+        coin.setCoords(coordinates);
         hand.removeCoinObject(coin);
+        //System.out.println("Coords of element added  "+coin.getCoords());
+        board.getCoinsInTheBoard().addCoin(coin);
         this.numActions++;
       }
     }
@@ -337,6 +338,15 @@ public class Player{
       System.out.println("To position(row,col): ");
       String newCoordinates = sc.nextLine();
       coin.attack(newCoordinates, board, this);
+      //remove coin from arraylist of coinsBoard
+      System.out.println(this.board.getCoinsInTheBoard().getCoinsBoard());
+      for(UnitType i:this.board.getCoinsInTheBoard().getCoinsBoard()){
+        System.out.println(i.getCoords());
+        if(i.getCoords() == newCoordinates){
+            this.board.getCoinsInTheBoard().removeCoinObject(i);
+        }
+      }
+
       this.numActions++;
     }
 
