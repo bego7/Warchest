@@ -24,9 +24,11 @@ public class Game {
                 if(!currentPlayer.getPlayedInitiative() && currentPlayer.play(true)){
                     if(currentPlayer.getLastActionPlayed().equals("forfeit")){
                         if(currentPlayer.getName().equals("Wolf")){
+                            System.out.println("Wolf surrendered!");
                             System.out.println("The winner is Crow");
                         }
                         else{
+                            System.out.println("Crow surrendered!");
                             System.out.println("The winner is Wolf!");
                         }
                         break;
@@ -86,14 +88,19 @@ public class Game {
 
         if(playerCrow.getControlledZones() == 4 |  playerWolf.getControlledZones() == 4 | currentPlayer.getForfeit() == true){
             gameOver = true;
+
+            //player surrenders
             if(currentPlayer.getForfeit() == true){
                 if(currentPlayer.getName().equals("Wolf")){
+                    System.out.println("Wolf surrendered!");
                     System.out.println("The winner is Crow");
                 }
                 else{
+                    System.out.println("Crow surrendered!");
                     System.out.println("The winner is Wolf!");
                 }
             }
+            //one player gets 4 zones
             else{
                 if(playerCrow.getControlledZones() == 4){
                     System.out.println("The winner is crow");

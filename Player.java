@@ -13,6 +13,9 @@ public class Player{
     private boolean forfeit = false;
     private String lastActionPlayed = "";
 
+    //test to see if i can create Archer objects using the inherited methods from unitType
+    private Archer archer = new Archer("Archer", "A");
+
 
     Player(String name, String token){
       this.name = name;
@@ -84,6 +87,8 @@ public class Player{
       switch(action){
         case "move":
         System.out.println("From position (row, col): ");
+        System.out.println(archer.getName());
+        //String answer = sc.nextLine();
 
         this.numActions++;
         break;
