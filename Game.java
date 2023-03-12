@@ -5,8 +5,10 @@ public class Game {
 
     
     private Board board = new Board(5);
-    private Player playerWolf = new Player("Wolf", "v");
-    private Player playerCrow = new Player("Crow", "^");
+
+    //when creating the player object I need to pass in the board to it so it can actually set the tokens into the board 
+    private Player playerWolf;
+    private Player playerCrow;
     private Player currentPlayer;
     private boolean gameOver = false;
 
@@ -14,6 +16,7 @@ public class Game {
         
             System.out.println();
             System.out.println("Board size is 5x5");
+            preparePlayersToPlay();
             currentPlayer = getStartingPlayer();
             board.initializeBoard(5);
             board.printBoard(5,currentPlayer);
@@ -81,6 +84,13 @@ public class Game {
         }
             return playerCrow;
         
+    }
+
+    public void preparePlayersToPlay(){
+         playerWolf = new Player("Wolf", "v",board);
+         playerCrow = new Player("Crow", "^",board);
+         playerWolf.preparePlayerSettings();
+         playerCrow.preparePlayerSettings();
     }
 
 

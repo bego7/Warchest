@@ -70,12 +70,46 @@ public class Board {
         System.out.println();
      }
 
-     
+    public void setToken(String coordinates, String token, String playerToken){
+        String tokenToPlace = token + playerToken ;
+        int arr [] = parseCoordinates(coordinates);
+        // if(arr[0]==-1){
+        //     System.out.println("Invalid coordinates added, enter new coordinates");
+        //     sc.nextLine() 
+        // }
+        grid[arr[0]][arr[1]] = tokenToPlace;
+    }
+
+    public int[] parseCoordinates(String coordinates){
+        int[] newCoords = new int [2];
+        newCoords[0] = parseRow(coordinates.charAt(0));
+        newCoords[1] = Character.getNumericValue(coordinates.charAt(2));
         
+        return newCoords;
+    }
+    public int parseRow(char row){
+        int parsedRow = -1;
+        switch(row){
+            case 'a':
+                parsedRow = 0;
+            break;
+            case 'b':
+                parsedRow = 1;
+            break;
+            case 'c':
+                parsedRow = 2;
+            break;
+            case 'd':
+                parsedRow = 3;
+            break;
+            case 'e':
+                parsedRow = 4;
+            break;
+            default:
+                System.out.println("Row value is invalid");
+                parsedRow = -1;
+        }
 
-    
-
-    //  public void setToken(char row, int col, Player player){
-
-    //  }
+        return parsedRow;
+    }
 }

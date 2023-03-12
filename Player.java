@@ -12,6 +12,7 @@ public class Player{
     private int controlledZones = 1;
     private boolean forfeit = false;
     private String lastActionPlayed = "";
+    private Board board;
 
     //test to see if i can create Archer objects using the inherited methods from unitType
     private Archer archer = new Archer("Archer", "A");
@@ -22,23 +23,23 @@ public class Player{
       this.token = token;
     }
     //overloading to create a player without a bag initially
-    Player(String name, String token, Bag bag){
+    Player(String name, String token, Board board){
       this.name = name;
       this.token = token;
-      this.bag = bag;
+      this.board = board;
     }
 
     // Getters
     public String getName() {
-      return name;
+      return this.name;
     }
 
     public String getToken() {
-      return token;
+      return this.token;
     }
 
     public Boolean getPlayedInitiative(){
-      return playInitiative;
+      return this.playInitiative;
     }
 
     public int getNumAction(){
@@ -49,7 +50,11 @@ public class Player{
       return this.forfeit;
     }
     public String getLastActionPlayed(){
-      return lastActionPlayed;
+      return this.lastActionPlayed;
+    }
+
+    public Board getBoard() {
+      return this.board;
     }
   
     // Setters
@@ -70,7 +75,7 @@ public class Player{
     }
 
     public void preparePlayerSettings(){
-
+      System.out.println("The hand is:");
     }
     public boolean play(boolean finishRound){
       while(this.numActions < 3 && !getForfeit()){
@@ -100,7 +105,20 @@ public class Player{
         break;
 
         case "place":
-          System.out.println("Place action selected");
+          System.out.println("Piece to place from hand");
+          String piece = sc.nextLine();
+          //iterate to get the actual object and send it to place the token
+          System.out.println("Position to place (row, col): ");
+
+          String coordinates = sc.nextLine();
+
+          
+          archer.place(coordinates, board, this);
+
+          //print hand
+
+
+
           this.numActions++;
 
 
