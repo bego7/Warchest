@@ -18,10 +18,14 @@ public class Game {
             System.out.println("Board size is 5x5");
             preparePlayersToPlay();
             currentPlayer = getStartingPlayer();
+            
             board.initializeBoard(5);
             board.printBoard(5,currentPlayer);
+            currentPlayer.printCurrentCoins();
             while(!isGameOver()){
+                
                 currentPlayer.play(false);
+                
                 //only changes the current player playing if he/she
                 //didn't use the initiative action
                 if(!currentPlayer.getPlayedInitiative() && currentPlayer.play(true)){
@@ -53,6 +57,7 @@ public class Game {
     public void startNewRound(){
         cleanScreen(); 
         board.printBoard(5,currentPlayer);
+        currentPlayer.printCurrentCoins();
         currentPlayer.setPlayedInitiative(false);
         currentPlayer.setNumActions(0);
         currentPlayer.play(false);
@@ -94,9 +99,11 @@ public class Game {
          //Wolf player will have archer and berseker elements
          playerWolf.preparePlayerSettings("A", "B");
          playerWolf.drawFromBag();
+         
          //Crow player will have Swordsman and cavalry elements
          playerCrow.preparePlayerSettings("S","C");
          playerCrow.drawFromBag();
+        
     }
 
 

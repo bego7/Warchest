@@ -22,10 +22,15 @@ public class Hand {
         return coinToReturn;
     }
 
+    public void removeCoinObject(UnitType coin){
+        this.pieces.remove(coin);
+    }
+
     public void printHand(){
         System.out.println("The hand has:");
         for(UnitType piece: pieces){
-            System.out.println(piece);
+            System.out.print("  " + piece.getName());
         }
+        System.out.println();
     }
 }

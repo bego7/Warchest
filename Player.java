@@ -5,6 +5,8 @@ public class Player{
     
     private Bag bag = new Bag();
     private Hand hand = new Hand();
+    private RecruitingPile recruiting = new RecruitingPile();
+    private DiscardPile discardPile = new DiscardPile();
 
     private String name; 
     private String token;
@@ -80,8 +82,14 @@ public class Player{
       //get first unit type
       UnitType firstArmyElem = parseCoin(coinType1);
 
-      //get first unit type
+      //get second unit type
       UnitType secondArmyElem = parseCoin(coinType2);
+
+      //adds elements to the recruiting area
+      for(int i=0;i<2;i++){
+        recruiting.addCoin(firstArmyElem);
+        recruiting.addCoin(secondArmyElem);
+      }
 
       //add both elements to the bag for this player
       for(int i=0;i<2;i++){
@@ -92,10 +100,17 @@ public class Player{
       Royal royal = new Royal("Royal", "R");
       bag.addCoin(royal);
 
-      bag.printPiecesInsideBag();
+      //bag.printPiecesInsideBag();
+      //recruiting.printRecruitingPile();
     }
 
-    //removes 3 elements from the bag and adds them to the hand of tha player
+    public void printCurrentCoins(){
+      hand.printHand();
+      recruiting.printRecruitingPile();
+      discardPile.printPiecesInsideDiscardPile();
+    }
+
+    //removes 3 elements from the bag and adds them to the hand of the player
     public void drawFromBag(){
       //removes random coin from the bag
       for(int i=0;i<3;i++){
@@ -104,7 +119,14 @@ public class Player{
         UnitType coin = bag.removeCoin(val);
         hand.addCoin(coin);
       }
-      hand.printHand();
+      //hand.printHand();
+    }
+
+    public void setRecruitingPile(){
+      System.out.println("Elements inside the bag one by one");
+      for(UnitType piece: bag.getBag()){
+        System.out.println(piece.getName());
+      }
     }
 
     public UnitType parseCoin(String coin){
@@ -153,15 +175,14 @@ public class Player{
         String coordinates = sc.nextLine();
         System.out.println("Select a piece of the same type in your hand ");
         String piece = sc.nextLine();
-        //check that piece exists in the hand, if it doenst send an error
+
+        //checks for existing piece in hand 
+        UnitType coin = coinExistsInHand(piece);
         System.out.println("Position to place (row, col): ");
 
         String newCoordinates = sc.nextLine();
 
-        archer.move(coordinates,newCoordinates, board, this);
-
-        System.out.println(archer.getName());
-        //String answer = sc.nextLine();
+        coin.move(coordinates,newCoordinates, board, this);
 
         this.numActions++;
         break;
@@ -176,24 +197,19 @@ public class Player{
           System.out.println("Piece to place from hand");
            piece = sc.nextLine();
           //iterate to get the actual object and send it to place the token
+          coin = coinExistsInHand(piece);
           System.out.println("Position to place (row, col): ");
-
           coordinates = sc.nextLine();
-
-          
-          archer.place(coordinates, board, this);
-
+          coin.place(coordinates, board, this);
+          hand.removeCoinObject(coin);
           //print hand
-
-
-
+          hand.printHand();
           this.numActions++;
-
-
         break;
 
         case "attack":
           System.out.println("Attack action selected");
+          //hand.printHand();
           this.numActions++;
 
         break;
@@ -225,5 +241,20 @@ public class Player{
 
     public int getControlledZones(){
       return 1;
+    }
+
+    public UnitType coinExistsInHand(String name){
+      UnitType coin = null;
+      System.out.println("Received value"+ name);
+      for(UnitType piece: hand.getHand()){
+        if(piece.getName().equals(name)){
+          coin = piece;
+        }
+        else{
+          coin = null;
+        }
+      }
+      System.out.println("The name of the found element is"+coin.getName());
+      return coin;
     }
 }
