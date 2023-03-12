@@ -16,6 +16,11 @@ public class Royal extends UnitType {
 	public void move(String coordinates, String newCoordinates, Board board,Player player) {
         System.out.println("This piece can't be moved");
 	}
+
+    @Override
+	public void attack(String coordinates, Board board,Player player) {
+        System.out.println("This piece can't attack");
+	}
     
     //Getters
     

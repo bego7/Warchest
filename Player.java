@@ -7,6 +7,7 @@ public class Player{
     private Hand hand = new Hand();
     private RecruitingPile recruiting = new RecruitingPile();
     private DiscardPile discardPile = new DiscardPile();
+    private CoinsBoard coinsBoard = new CoinsBoard();
 
     private String name; 
     private String token;
@@ -253,7 +254,19 @@ public class Player{
         break;
 
         case "attack":
-          System.out.println("Attack action selected");
+          System.out.println("Attack from position (row,col): ");
+          coordinates = sc.nextLine();
+          coin = null;
+          while(coin == null){
+            System.out.println("Select a piece of the same type in your hand ");
+            piece = sc.nextLine();
+            //checks for existing piece in hand 
+            coin = coinExistsInHand(piece);
+          }
+          System.out.println("To position(row,col): ");
+          newCoordinates = sc.nextLine();
+          coin.attack(newCoordinates, board, this);
+
           //hand.printHand();
           this.numActions++;
 

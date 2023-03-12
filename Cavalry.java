@@ -18,6 +18,11 @@ public class Cavalry  extends UnitType{
         board.setToken(newCoordinates, this.getToken() ,player.getToken());
 		
 	}
+
+    @Override
+	public void attack(String coordinates, Board board,Player player) {
+        board.removeToken(coordinates);
+	}
     //Getters
     
     //Setters
