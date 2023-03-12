@@ -1,20 +1,20 @@
 import java.util.*;  
 public class RecruitingPile {
     
-    private ArrayList<Object> pieces = new ArrayList<Object>();
+    private ArrayList<UnitType> pieces = new ArrayList<UnitType>();
     // Getters
-    public ArrayList<Object> getRecruitingPile(){
+    public ArrayList<UnitType> getRecruitingPile(){
         return this.pieces;
     }
     
     // Setters
-    public void setRecruitingPile(ArrayList<Object> pieces){
+    public void setRecruitingPile(ArrayList<UnitType> pieces){
         this.pieces = pieces;
     }
 
     public void printPiecesInsideRecruitingPile(){
         System.out.println("The recruiting pile has:");
-        for(Object piece: pieces){
+        for(UnitType piece: pieces){
             System.out.println(piece);
         }
     }

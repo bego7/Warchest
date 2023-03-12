@@ -3,10 +3,12 @@ public class Player{
 
     Scanner sc = new Scanner(System.in);
     
+    private Bag bag = new Bag();
+    private Hand hand = new Hand();
 
     private String name; 
     private String token;
-    private Bag bag = new Bag();
+    
     private Boolean playInitiative = false;
     private int numActions = 0;
     private int controlledZones = 1;
@@ -90,7 +92,16 @@ public class Player{
       Royal royal = new Royal("Royal", "R");
       bag.addCoin(royal);
 
-      //bag.printPiecesInsideBag();
+      bag.printPiecesInsideBag();
+    }
+
+    //removes 3 elements from the bag and adds them to the hand of tha player
+    public void drawFromBag(){
+      for(int i=0;i<3;i++){
+        UnitType coin = bag.removeCoin(i);
+        hand.addCoin(coin);
+      }
+      
     }
 
     public UnitType parseCoin(String coin){

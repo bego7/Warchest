@@ -1,20 +1,30 @@
 import java.util.*;  
 public class Hand {
     
-    private ArrayList<Object> pieces = new ArrayList<Object>();
+    private ArrayList<UnitType> pieces = new ArrayList<UnitType>();
     // Getters
-    public ArrayList<Object> getHand(){
+    public ArrayList<UnitType> getHand(){
         return this.pieces;
     }
     
     // Setters
-    public void setHand(ArrayList<Object> pieces){
+    public void setHand(ArrayList<UnitType> pieces){
         this.pieces = pieces;
+    }
+
+    public void addCoin(UnitType coin){
+        this.pieces.add(coin);
+    }
+    
+    public UnitType removeCoin(int i){
+        UnitType coinToReturn = this.pieces.get(i);
+        this.pieces.remove(i);
+        return coinToReturn;
     }
 
     public void printPiecesInsideBag(){
         System.out.println("The hand has:");
-        for(Object piece: pieces){
+        for(UnitType piece: pieces){
             System.out.println(piece);
         }
     }
