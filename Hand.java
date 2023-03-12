@@ -22,7 +22,7 @@ public class Hand {
         return coinToReturn;
     }
 
-    public void printPiecesInsideBag(){
+    public void printHand(){
         System.out.println("The hand has:");
         for(UnitType piece: pieces){
             System.out.println(piece);

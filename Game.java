@@ -40,8 +40,6 @@ public class Game {
                         switchTurn();
                         startNewRound();
                     }
-                    
-                    
                 }
                 //player finished playing but played the take the initiative action during
                 //his/ her turn
@@ -95,8 +93,10 @@ public class Game {
 
          //Wolf player will have archer and berseker elements
          playerWolf.preparePlayerSettings("A", "B");
+         playerWolf.drawFromBag();
          //Crow player will have Swordsman and cavalry elements
          playerCrow.preparePlayerSettings("S","C");
+         playerCrow.drawFromBag();
     }
 
 

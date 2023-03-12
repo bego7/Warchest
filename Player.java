@@ -1,6 +1,6 @@
 import java.util.*;  
 public class Player{
-
+    Random r = new Random();
     Scanner sc = new Scanner(System.in);
     
     private Bag bag = new Bag();
@@ -97,11 +97,14 @@ public class Player{
 
     //removes 3 elements from the bag and adds them to the hand of tha player
     public void drawFromBag(){
+      //removes random coin from the bag
       for(int i=0;i<3;i++){
-        UnitType coin = bag.removeCoin(i);
+        int bagSize = bag.getBagSize();
+        int val = r.nextInt(0,bagSize);
+        UnitType coin = bag.removeCoin(val);
         hand.addCoin(coin);
       }
-      
+      hand.printHand();
     }
 
     public UnitType parseCoin(String coin){

@@ -6,6 +6,10 @@ public class Bag {
     public ArrayList<UnitType> getBag(){
         return this.pieces;
     }
+
+    public int getBagSize(){
+        return this.pieces.size();
+    }
     
     // Setters
     public void setBag(ArrayList<UnitType> pieces){
