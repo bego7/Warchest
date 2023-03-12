@@ -1,8 +1,10 @@
 public class Cavalry  extends UnitType{
+
+
     Cavalry(String name, String token){
         super(name,token);
-
     }
+    
     @Override
 	public void place(String coordinates, Board board,Player player) {
 		System.out.println("Placing piece");

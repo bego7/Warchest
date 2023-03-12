@@ -5,7 +5,7 @@ public class Archer extends UnitType {
         super(name,token);
 
     }
-
+    
     @Override
 	public void place(String coordinates, Board board,Player player) {
         board.setToken(coordinates, this.getToken() ,player.getToken());

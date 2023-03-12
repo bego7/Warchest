@@ -6,7 +6,7 @@ public class Player{
 
     private String name; 
     private String token;
-    private Bag bag;
+    private Bag bag = new Bag();
     private Boolean playInitiative = false;
     private int numActions = 0;
     private int controlledZones = 1;
@@ -74,9 +74,53 @@ public class Player{
       this.forfeit = true;
     }
 
-    public void preparePlayerSettings(){
-      System.out.println("The hand is:");
+    public void preparePlayerSettings(String coinType1, String coinType2){
+      //get first unit type
+      UnitType firstArmyElem = parseCoin(coinType1);
+
+      //get first unit type
+      UnitType secondArmyElem = parseCoin(coinType2);
+
+      //add both elements to the bag for this player
+      for(int i=0;i<2;i++){
+        bag.addCoin(firstArmyElem);
+        bag.addCoin(secondArmyElem);
+      }
+      //add the royal coin to the bag
+      Royal royal = new Royal("Royal", "R");
+      bag.addCoin(royal);
+
+      //bag.printPiecesInsideBag();
     }
+
+    public UnitType parseCoin(String coin){
+      
+      UnitType coinToReturned = null;
+      switch(coin){
+        case "A":
+        Archer archer = new Archer("Archer", coin);
+        coinToReturned = archer;
+        break;
+
+        case "B":
+        Berserker berserker = new Berserker("Berserker", coin);;
+        coinToReturned = berserker;
+        break;
+
+        case "C":
+        Cavalry cavalry = new Cavalry("Cavalry", coin);;
+        coinToReturned = cavalry;
+        break;
+
+        case "S":
+        Swordsman swordsman = new Swordsman("Swordsman", coin);
+        coinToReturned = swordsman;
+        break;
+      }
+
+      return coinToReturned;
+    }
+
     public boolean play(boolean finishRound){
       while(this.numActions < 3 && !getForfeit()){
         takeAction();

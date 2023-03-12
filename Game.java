@@ -86,11 +86,17 @@ public class Game {
         
     }
 
+    //send to each player the coins that they will have
+    //possible improvements make it random
+    //however for simplicity purposes and also as displayed on the video of the real life board game I will assign the type of army by default
     public void preparePlayersToPlay(){
          playerWolf = new Player("Wolf", "v",board);
          playerCrow = new Player("Crow", "^",board);
-         playerWolf.preparePlayerSettings();
-         playerCrow.preparePlayerSettings();
+
+         //Wolf player will have archer and berseker elements
+         playerWolf.preparePlayerSettings("A", "B");
+         //Crow player will have Swordsman and cavalry elements
+         playerCrow.preparePlayerSettings("S","C");
     }
 
 

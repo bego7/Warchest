@@ -12,6 +12,14 @@ public class Bag {
         this.pieces = pieces;
     }
 
+    public void addCoin(UnitType coin){
+        pieces.add(coin);
+    }
+    
+    public void removeCoin(UnitType coin){
+        pieces.remove(coin);
+    }
+
     public void printPiecesInsideBag(){
         System.out.println("The bag has:");
         for(Object piece: pieces){
