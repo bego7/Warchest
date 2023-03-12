@@ -18,11 +18,11 @@ public class Game {
             System.out.println("Board size is 5x5");
             preparePlayersToPlay();
             currentPlayer = getStartingPlayer();
-            
+
             board.initializeBoard(5);
             board.printBoard(5,currentPlayer);
-            currentPlayer.printCurrentCoins();
-            while(!isGameOver()){
+            //currentPlayer.printCurrentCoins();
+            while(!isGameOver() || !this.gameOver){
                 
                 currentPlayer.play(false);
                 
@@ -57,10 +57,32 @@ public class Game {
     public void startNewRound(){
         cleanScreen(); 
         board.printBoard(5,currentPlayer);
-        currentPlayer.printCurrentCoins();
-        currentPlayer.setPlayedInitiative(false);
-        currentPlayer.setNumActions(0);
-        currentPlayer.play(false);
+        
+        //before startin the next round check if someone at the end of the other round 
+        //didnt run out of coins in their bag
+        if(playerWolf.getBagSize()==0 | playerCrow.getBagSize() == 0 ){
+            this.gameOver = true;
+            System.out.println("GAME IS OVER, LAST PLAYER TO PLAY DOESN'T HAVE ENOUGH COINS IN BAG TO GET FROM");
+            System.out.println("The winner is "+ currentPlayer.getName());
+        }
+
+        else{
+            //check number of elements in bag
+            if(currentPlayer.getHandSize()<3){
+                while(currentPlayer.getBagSize()>0){
+                    //take individual items from bag and add them to your hand
+                    currentPlayer.drawOneFromBag();
+                }
+                
+            }
+            // playerWolf.drawFromBag();
+            // playerCrow.drawFromBag();
+            //currentPlayer.printCurrentCoins();
+            currentPlayer.setPlayedInitiative(false);
+            currentPlayer.setNumActions(0);
+            currentPlayer.play(false);
+        }
+        
     }
 
     public void cleanScreen(){

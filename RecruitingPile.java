@@ -23,4 +23,14 @@ public class RecruitingPile {
         }
         System.out.println();
     }
+
+    public UnitType removeCoin(int i){
+        UnitType coinToReturn = this.pieces.get(i);
+        this.pieces.remove(i);
+        return coinToReturn;
+    }
+
+    public void removeCoinObject(UnitType coin){
+        this.pieces.remove(coin);
+    }
 }

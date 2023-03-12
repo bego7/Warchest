@@ -6,6 +6,10 @@ public class Hand {
     public ArrayList<UnitType> getHand(){
         return this.pieces;
     }
+
+    public int getHandSize(){
+        return this.pieces.size();
+    }
     
     // Setters
     public void setHand(ArrayList<UnitType> pieces){

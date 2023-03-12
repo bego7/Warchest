@@ -17,7 +17,7 @@ public class DiscardPile {
     }
 
     public void printPiecesInsideDiscardPile(){
-        System.out.println("The discard pile is:");
+        System.out.println("The discard pile has:");
         for(UnitType piece: pieces){
             System.out.print("  "+ piece.getName());
         }

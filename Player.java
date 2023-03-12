@@ -60,6 +60,14 @@ public class Player{
     public Board getBoard() {
       return this.board;
     }
+
+    public int getBagSize(){
+      return this.bag.getBagSize();
+    }
+
+    public int getHandSize(){
+      return this.hand.getHandSize();
+    }
   
     // Setters
     public void setName(String name) {
@@ -108,6 +116,9 @@ public class Player{
       hand.printHand();
       recruiting.printRecruitingPile();
       discardPile.printPiecesInsideDiscardPile();
+      System.out.println();
+      System.out.println();
+
     }
 
     //removes 3 elements from the bag and adds them to the hand of the player
@@ -120,6 +131,12 @@ public class Player{
         hand.addCoin(coin);
       }
       //hand.printHand();
+    }
+    //removes one element from the bag and adds them to the players hand
+    public void drawOneFromBag(){
+        int bagSize = bag.getBagSize();
+        UnitType coin = bag.removeCoin(bagSize-1);
+        hand.addCoin(coin);
     }
 
     public void setRecruitingPile(){
@@ -166,44 +183,72 @@ public class Player{
     }
 
     public void takeAction(){
+      printCurrentCoins();
       
       System.out.println("Make an action (move/recruit/place/attack/control/initiative/forfeit): ");
       String action = sc.nextLine();
       switch(action){
+
         case "move":
         System.out.println("From position (row, col): ");
         String coordinates = sc.nextLine();
-        System.out.println("Select a piece of the same type in your hand ");
-        String piece = sc.nextLine();
+        UnitType coin = null;
 
-        //checks for existing piece in hand 
-        UnitType coin = coinExistsInHand(piece);
+        while(coin == null){
+          System.out.println("Select a piece of the same type in your hand ");
+          String piece = sc.nextLine();
+          //checks for existing piece in hand 
+          coin = coinExistsInHand(piece);
+        }
+        discardPile.addCoin(coin);
         System.out.println("Position to place (row, col): ");
 
         String newCoordinates = sc.nextLine();
 
         coin.move(coordinates,newCoordinates, board, this);
+        //removes coin from hand
+        hand.removeCoinObject(coin);
 
         this.numActions++;
         break;
 
         case "recruit":
-          System.out.println("Recruit action selected");
+          System.out.println("Piece to discard from hand to recruit piece of the same type");
+          String piece = sc.nextLine();
+          coin = coinExistsInHand(piece);
+          //removes coin from hand
+          hand.removeCoinObject(coin);
+          discardPile.addCoin(coin);
+          System.out.println("Used "+ piece +" coin, type the piece you want to recruit");
+          String pieceToRecruit = sc.nextLine();
+          coin = coinExistsInRecruitment(pieceToRecruit);
+
+
+          //remove coin from recruiting zone 
+          recruiting.removeCoinObject(coin);
+          //add coin to bag
+          bag.addCoin(coin);
+          
+
+
           this.numActions++;
 
         break;
 
         case "place":
           System.out.println("Piece to place from hand");
-           piece = sc.nextLine();
-          //iterate to get the actual object and send it to place the token
-          coin = coinExistsInHand(piece);
+          coin = null;
+          while(coin == null){
+            System.out.println("Select a piece of the same type in your hand ");
+            piece = sc.nextLine();
+            //checks for existing piece in hand 
+            coin = coinExistsInHand(piece);
+          }
+          
           System.out.println("Position to place (row, col): ");
           coordinates = sc.nextLine();
           coin.place(coordinates, board, this);
           hand.removeCoinObject(coin);
-          //print hand
-          hand.printHand();
           this.numActions++;
         break;
 
@@ -222,9 +267,12 @@ public class Player{
 
         case "initiative":
           playInitiative = true;
-          System.out.println("Initiative action selected");
+          System.out.println("Piece to discard from hand");
+          piece = sc.nextLine();
+          coin = coinExistsInHand(piece);
+          this.discardPile.addCoin(coin);
+          hand.removeCoinObject(coin);
           this.numActions++;
-
         break;
 
         case "forfeit":
@@ -245,16 +293,26 @@ public class Player{
 
     public UnitType coinExistsInHand(String name){
       UnitType coin = null;
-      System.out.println("Received value"+ name);
       for(UnitType piece: hand.getHand()){
+        
         if(piece.getName().equals(name)){
           coin = piece;
         }
-        else{
-          coin = null;
-        }
       }
-      System.out.println("The name of the found element is"+coin.getName());
       return coin;
     }
+
+
+    public UnitType coinExistsInRecruitment(String name){
+      UnitType coin = null;
+      for(UnitType piece: recruiting.getRecruitingPile()){
+        
+        if(piece.getName().equals(name)){
+          coin = piece;
+        }
+      }
+      return coin;
+    }
+
+    
 }
