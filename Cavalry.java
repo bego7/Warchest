@@ -14,7 +14,8 @@ public class Cavalry  extends UnitType{
 
     @Override
 	public void move(String coordinates, String newCoordinates, Board board,Player player) {
-        board.setToken(coordinates, this.getToken() ,player.getToken());
+        board.removeToken(coordinates);
+        board.setToken(newCoordinates, this.getToken() ,player.getToken());
 		
 	}
     //Getters

@@ -35,5 +35,7 @@ public abstract class UnitType{
 
     public abstract void place(String coordinates, Board board,Player player);
 
+    //public abstract void attack(String coordinates, Board board,Player player);
+
 
 }
