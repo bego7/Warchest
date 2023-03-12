@@ -10,6 +10,12 @@ public class Berserker extends UnitType {
         board.setToken(coordinates, this.getToken() ,player.getToken());
 		
 	}
+
+    @Override
+	public void move(String coordinates, String newCoordinates, Board board,Player player) {
+        board.setToken(coordinates, this.getToken() ,player.getToken());
+		
+	}
     //Getters
     
     //Setters

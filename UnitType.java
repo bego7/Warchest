@@ -30,7 +30,7 @@ public abstract class UnitType{
     //asbtract methos to be implemented by the rest 
     //of my pieces 
 
-    //public abstract void move(char row,int col, Board board, Player player);
+    public abstract void move(String coordinates,String newCoordinates, Board board,Player player);
 
     public abstract void place(String coordinates, Board board,Player player);
 

@@ -92,6 +92,16 @@ public class Player{
       switch(action){
         case "move":
         System.out.println("From position (row, col): ");
+        String coordinates = sc.nextLine();
+        System.out.println("Select a piece of the same type in your hand ");
+        String piece = sc.nextLine();
+        //check that piece exists in the hand, if it doenst send an error
+        System.out.println("Position to place (row, col): ");
+
+        String newCoordinates = sc.nextLine();
+
+        archer.move(coordinates,newCoordinates, board, this);
+
         System.out.println(archer.getName());
         //String answer = sc.nextLine();
 
@@ -106,11 +116,11 @@ public class Player{
 
         case "place":
           System.out.println("Piece to place from hand");
-          String piece = sc.nextLine();
+           piece = sc.nextLine();
           //iterate to get the actual object and send it to place the token
           System.out.println("Position to place (row, col): ");
 
-          String coordinates = sc.nextLine();
+          coordinates = sc.nextLine();
 
           
           archer.place(coordinates, board, this);

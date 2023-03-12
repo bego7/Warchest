@@ -80,6 +80,11 @@ public class Board {
         grid[arr[0]][arr[1]] = tokenToPlace;
     }
 
+    public void removeToken(String coordinates){
+        int arr [] = parseCoordinates(coordinates);
+        grid[arr[0]][arr[1]] =".  ";
+    }
+
     public int[] parseCoordinates(String coordinates){
         int[] newCoords = new int [2];
         newCoords[0] = parseRow(coordinates.charAt(0));
