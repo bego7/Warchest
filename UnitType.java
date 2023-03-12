@@ -28,6 +28,10 @@ public abstract class UnitType{
         this.token = value;
     }
 
+    public void control(String coordinates, Board board,Player player){
+        board.setToken(coordinates, this.getToken() ,player.getToken());
+    }
+
     //asbtract methos to be implemented by the rest 
     //of my pieces 
 
@@ -36,6 +40,9 @@ public abstract class UnitType{
     public abstract void place(String coordinates, Board board,Player player);
 
     public abstract void attack(String coordinates, Board board,Player player);
+
+    
+
 
 
 }
