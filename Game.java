@@ -21,7 +21,6 @@ public class Game {
 
             board.initializeBoard(5);
             board.printBoard(5,currentPlayer);
-            //currentPlayer.printCurrentCoins();
             while(!isGameOver() || !this.gameOver){
                 
                 currentPlayer.play(false);
@@ -77,14 +76,10 @@ public class Game {
                 }
                 
             }
-            // playerWolf.drawFromBag();
-            // playerCrow.drawFromBag();
-            //currentPlayer.printCurrentCoins();
             currentPlayer.setPlayedInitiative(false);
             currentPlayer.setNumActions(0);
             currentPlayer.play(false);
         }
-        
     }
 
     public void cleanScreen(){
@@ -130,7 +125,6 @@ public class Game {
         
     }
 
-
     public boolean isGameOver(){
 
         if(playerCrow.getControlledZones() == 4 |  playerWolf.getControlledZones() == 4 | currentPlayer.getForfeit() == true){
@@ -156,7 +150,6 @@ public class Game {
                     System.out.println("The winner is wolf!");
                 }
             }
-            
             
         }
         return gameOver;

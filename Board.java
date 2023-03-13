@@ -3,6 +3,8 @@ public class Board {
     Scanner sc = new Scanner(System.in);
     private int size;
     private String grid [][];
+    
+    //takes track of the coins already display on the board to later on delete them
     private CoinsBoard coinsBoard = new CoinsBoard();
 
     Board(int size) {
@@ -14,6 +16,7 @@ public class Board {
         return this.coinsBoard;
     }
 
+    //initializes an empty board
     public void initializeBoard(int size){
         System.out.println();
         for(int i=0;i<size;i++){
@@ -40,6 +43,8 @@ public class Board {
         grid[3][2] = "@  ";
      }
 
+
+     //displays the board on the console
      public void printBoard(int size,Player player ){
 
         System.out.print("   ");
@@ -76,6 +81,7 @@ public class Board {
         System.out.println();
      }
 
+    //adds a token into the board
     public void setToken(String coordinates, String token, String playerToken){
         String tokenToPlace = token + playerToken + " " ;
         int arr [] = parseCoordinates(coordinates);
@@ -89,6 +95,7 @@ public class Board {
         grid[arr[0]][arr[1]] = tokenToPlace;
     }
 
+    //removes token from board
     public void removeToken(String coordinates){
         int arr [] = parseCoordinates(coordinates);
         grid[arr[0]][arr[1]] =".  ";

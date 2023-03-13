@@ -84,6 +84,7 @@ public class Player{
       this.forfeit = true;
     }
 
+    //prepares the game by adding coins to the user's bags
     public void preparePlayerSettings(String coinType1, String coinType2){
       //get first unit type
       UnitType firstArmyElem = parseCoin(coinType1);
@@ -106,10 +107,8 @@ public class Player{
       Royal royal = new Royal("Royal", "R");
       bag.addCoin(royal);
 
-      //bag.printPiecesInsideBag();
-      //recruiting.printRecruitingPile();
     }
-
+    //prints the necessary arraylists to give information to the user about what he or she currently has
     public void printCurrentCoins(){
       hand.printHand();
       recruiting.printRecruitingPile();
@@ -128,20 +127,12 @@ public class Player{
         UnitType coin = bag.removeCoin(val);
         hand.addCoin(coin);
       }
-      //hand.printHand();
     }
     //removes one element from the bag and adds them to the players hand
     public void drawOneFromBag(){
         int bagSize = bag.getBagSize();
         UnitType coin = bag.removeCoin(bagSize-1);
         hand.addCoin(coin);
-    }
-
-    public void setRecruitingPile(){
-      System.out.println("Elements inside the bag one by one");
-      for(UnitType piece: bag.getBag()){
-        System.out.println(piece.getName());
-      }
     }
 
     public UnitType parseCoin(String coin){
@@ -201,7 +192,6 @@ public class Player{
 
         case "attack":
             attack();
-
         break;
 
         case "control":
@@ -223,9 +213,11 @@ public class Player{
     }
 
     public int getControlledZones(){
-      return 1;
+      return this.controlledZones;
     }
 
+    //check that the coin that the player wants to play exists in the hand
+    //returns the existing coin
     public UnitType coinExistsInHand(String name){
       UnitType coin = null;
       for(UnitType piece: hand.getHand()){
@@ -237,7 +229,7 @@ public class Player{
       return coin;
     }
 
-
+    //checks that the coin exists in the reruiting area and returns it
     public UnitType coinExistsInRecruitment(String name){
       UnitType coin = null;
       for(UnitType piece: recruiting.getRecruitingPile()){
@@ -303,7 +295,6 @@ public class Player{
       UnitType coin = null;
 
       while(coin == null){
-          System.out.println("Select a piece of the same type in your hand ");
           String piece = sc.nextLine();
           //checks for existing piece in hand 
           coin = coinExistsInHand(piece);
@@ -319,7 +310,6 @@ public class Player{
         coin.place(coordinates, board, this);
         coin.setCoords(coordinates);
         hand.removeCoinObject(coin);
-        //System.out.println("Coords of element added  "+coin.getCoords());
         board.getCoinsInTheBoard().addCoin(coin);
         this.numActions++;
       }
@@ -332,14 +322,14 @@ public class Player{
       while(coin == null){
         System.out.println("Select a piece of the same type in your hand ");
         String piece = sc.nextLine();
-            //checks for existing piece in hand 
+        //checks for existing piece in hand 
         coin = coinExistsInHand(piece);
       }
       System.out.println("To position(row,col): ");
       String newCoordinates = sc.nextLine();
       coin.attack(newCoordinates, board, this);
       //remove coin from arraylist of coinsBoard
-      System.out.println(this.board.getCoinsInTheBoard().getCoinsBoard());
+      //System.out.println(this.board.getCoinsInTheBoard().getCoinsBoard());
       for(UnitType i:this.board.getCoinsInTheBoard().getCoinsBoard()){
         System.out.println(i.getCoords());
         if(i.getCoords() == newCoordinates){
@@ -374,6 +364,8 @@ public class Player{
       this.numActions++;
     }
 
+    //if the player uses the forfeit action the game finishes
+    //I took it as a surrender action
     public void forfeit(){
       System.out.println("GAME OVER!");
       setForfeit(true);
