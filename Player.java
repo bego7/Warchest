@@ -329,7 +329,6 @@ public class Player{
       String newCoordinates = sc.nextLine();
       coin.attack(newCoordinates, board, this);
       //remove coin from arraylist of coinsBoard
-      //System.out.println(this.board.getCoinsInTheBoard().getCoinsBoard());
       for(UnitType i:this.board.getCoinsInTheBoard().getCoinsBoard()){
         System.out.println(i.getCoords());
         if(i.getCoords() == newCoordinates){
